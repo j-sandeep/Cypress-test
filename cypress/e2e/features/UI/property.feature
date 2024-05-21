@@ -8,7 +8,7 @@ Scenario Outline: User can search properties to rent
     Examples:
         | Postcode | 
         | Bromley  |
-        | Croydon  |  
+        | Swanley  |  
 
 Scenario: User can search properties to buy
     Given I have navigated to buying page
