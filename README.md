@@ -36,12 +36,18 @@ Install LA-Test with npm
     
 ## How to run?
 
-Run command
+To run all tests, run command
 
 ```bash
-  npm install 
+  npx cypress run
 ```
-    
+
+To run all tests with tag @test, run command
+
+```bash
+  npx cypress run --env tags=@test
+```
+
 ## Authors
 
 - [@j-sandeep](https://github.com/j-sandeep)
