@@ -21,14 +21,21 @@ Recruiter.feature file has scenarios that adds contact details and this scenario
 
 ### API Tests
 
-There is only one feature. The test uses a public endpoint to query mutual fund API.
+There is only one feature. The test uses a public endpoint to query mutual fund API. 
+The test asked to create and update but I could not find public APIs which appeared safe and which do not need user account where I could create and update resources.  
+
+## Parallelisation
+
+I could not parallelise the test run successfully. 
 
 
 ## Installation
 
-Clone the project in your preferred folder
+Clone the project in your preferred folder. 
 
-Install LA-Test with npm
+Navigate to that folder.
+
+Install Cypress-test with npm
 
 ```bash
   npm install 

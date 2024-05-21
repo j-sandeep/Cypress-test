@@ -1,6 +1,6 @@
 class EnquirySubmitted {
     isEnquirySubmittedSuccessfully() {
-        cy.get('#main-content h1').should('eql', 'Thank You');
+        cy.get('#main-content h2').should('contain', 'Thanks for reaching out');
     }
 }
 
