@@ -2,11 +2,11 @@ import { When, Then, Given, DataTable } from "@badeball/cypress-cucumber-preproc
 import contactDetails from "../pageObjects/contactDetails";
 import enquirySubmitted from "../pageObjects/enquirySubmitted";
 
-Given("I have navigated to contact page for Teksystems", () => {
+Given(/^I have navigated to contact page for Teksystems$/, () => {
     cy.visit("https://www.teksystems.com/en-gb/contact-us");
 });
 
-When("I enter following data for contact details", (table: DataTable) => {
+When(/^I enter following data for contact details$/, (table: DataTable) => {
     const { name, surName, email, phone, city, county, postcode, country, reason, comments } = table.rowsHash();
     contactDetails.enterName(name);
     contactDetails.enterSurname(surName);
@@ -21,6 +21,6 @@ When("I enter following data for contact details", (table: DataTable) => {
     contactDetails.clickSubmit();
 });
 
-Then("I expect to see enquiry submitted successfully", () => {
+Then(/^I expect to see enquiry submitted successfully$/, () => {
     enquirySubmitted.isEnquirySubmittedSuccessfully();
 })

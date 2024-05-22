@@ -1,8 +1,9 @@
 import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor";
-const baseUrl = 'https://api.mfapi.in';
-let response: scheme[];
+import { Scheme } from "../model/scheme";
 
-When("I query scheme name {string} to {string}", function (name: string, address: string) {
+const baseUrl = 'https://api.mfapi.in';
+
+When(/^I query scheme name '(.+)' to '(.+)'$/, function (name: string, address: string) {
     let urlToquery = baseUrl + address;
     cy.request({
         url: urlToquery, 
@@ -10,20 +11,15 @@ When("I query scheme name {string} to {string}", function (name: string, address
             "q": name
         },
         timeout: 10000
-    }).then((resp) => {
-        response = resp.body;
-    });
+    }).as('mfResponse')
 });
 
-Then("I expect to get the scheme code as {int} for {string}", (code: number, name: string) => {
-    let expectedObj = new scheme();
+Then(/^I expect to get the scheme code as (\d+) for '(.+)'$/, (code: number, name: string) => {
+    let expectedObj = new Scheme();
     expectedObj.schemeCode = code;
     expectedObj.schemeName = name;
-    expect(response).to.have.length(1);
-    expect(response[0]).eql(expectedObj);
+    cy.get('@mfResponse').should((response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body[0]).eql(expectedObj);        
+    })
 })
-
-class scheme {
-    schemeCode: number;
-    schemeName: string = null;
-}
