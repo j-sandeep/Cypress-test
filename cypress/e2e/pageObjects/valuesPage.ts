@@ -1,8 +1,12 @@
-class ValuesPage {
+export class ValuesPage {
+    // Selector strings
+    private header: string = '#main-content h1';
+
+    // Values
+    private headerTitle_Expected = 'Our Purpose and Values';
+
+    // Methods
     isTitleCorrect() {
-        cy.get('#main-content h1').should('contain.text', 'Our Purpose and Values');
+        cy.get(this.header).should('contain.text', this.headerTitle_Expected);
     }
 }
-
-const valuesPage = new ValuesPage();
-export default valuesPage;

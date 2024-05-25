@@ -1,26 +1,25 @@
 import { When, Then, Given, DataTable } from "@badeball/cypress-cucumber-preprocessor";
-import contactDetails from "../pageObjects/contactDetails";
-import enquirySubmitted from "../pageObjects/enquirySubmitted";
+import { ContactDetails } from "../pageObjects/contactDetails";
+import { EnquirySubmitted } from "../pageObjects/enquirySubmitted";
 
-Given(/^I have navigated to contact page for Teksystems$/, () => {
-    cy.visit("https://www.teksystems.com/en-gb/contact-us");
+const testUrl = 'https://testpages.eviltester.com/styled/validation/input-validation.html';
+
+Given(/^I have navigated to contact page$/, () => {
+    cy.visit(testUrl);
 });
 
 When(/^I enter following data for contact details$/, (table: DataTable) => {
-    const { name, surName, email, phone, city, county, postcode, country, reason, comments } = table.rowsHash();
-    contactDetails.enterName(name);
-    contactDetails.enterSurname(surName);
-    contactDetails.enterEmail(email);
-    contactDetails.enterPhone(phone);
-    contactDetails.enterCity(city);
-    contactDetails.enterCounty(county);
-    contactDetails.selectCountry(country);
-    contactDetails.enterPostcode(postcode);
-    contactDetails.selectReason(reason);
-    contactDetails.enterComment(comments);
+    const { firstName, lastName, age, country, notes } = table.rowsHash();
+    let contactDetails = new ContactDetails();
+    contactDetails.enterFirstName(firstName);
+    contactDetails.enterLastName(lastName);
+    contactDetails.enterAge(age);
+    contactDetails.enterCountry(country);
+    contactDetails.enterNotes(notes);
     contactDetails.clickSubmit();
 });
 
 Then(/^I expect to see enquiry submitted successfully$/, () => {
+    const enquirySubmitted = new EnquirySubmitted();
     enquirySubmitted.isEnquirySubmittedSuccessfully();
-})
+});

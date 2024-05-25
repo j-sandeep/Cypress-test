@@ -1,48 +1,32 @@
-class ContactDetails {
-    enterName(name: string) {
-        cy.get('[data-sc-field-name="First Name"]').clear().type(name);
+export class ContactDetails {
+    private firstNameTxt: string = '#firstname';
+    private lastNameTxt: string = '#surname';
+    private ageTxt: string = '#age';
+    private countryTxt: string = '#country';
+    private notesTxt: string = '#notes';
+    private submitBtn: string = '[type="submit"]';
+
+    enterFirstName(firstName: string) {
+        cy.get(this.firstNameTxt).clear().type(firstName);
     }
 
-    enterSurname(surname: string) {
-        cy.get('[data-sc-field-name="Last Name"]').clear().type(surname);
+    enterLastName(surname: string) {
+        cy.get(this.lastNameTxt).clear().type(surname);
     }
 
-    enterEmail(email: string) {
-        cy.get('[data-sc-field-name="Email"]').clear().type(email);
+    enterAge(age: string) {
+        cy.get(this.ageTxt).clear().type(age);
     }
 
-    enterPhone(phone: string) {
-        cy.get('[data-sc-field-name="Phone"]').clear().type(phone);
+    enterCountry(country: string) {
+        cy.get(this.countryTxt).select(country);
     }
 
-    enterCity(city: string) {
-        cy.get('[data-sc-field-name="City"]').clear().type(city);
-    }
-
-    enterCounty(county: string) {
-        cy.get('[data-sc-field-name="State"]').clear().type(county);
-    }
-
-    selectCountry(country: string) {
-        cy.get('[data-sc-field-name="Country"]').select(country);
-    }
-
-    selectReason(reason: string) {
-        cy.get('[data-sc-field-name="Inquiry Type"]').select(reason);
-    }
-
-    enterPostcode(postCode: string) {
-        cy.get('[data-sc-field-name="Zip"]').clear().type(postCode);
-    }
-
-    enterComment(comment: string) {
-        cy.get('[data-sc-field-name="Comments"]').clear().type(comment);
+    enterNotes(notes: string) {
+        cy.get(this.notesTxt).clear().type(notes);
     }
 
     clickSubmit() {
-        cy.get('[value="Let\'s talk"]').click();
+        cy.get(this.submitBtn).click();
     }
 }
-
-const contactDetails = new ContactDetails();
-export default contactDetails;

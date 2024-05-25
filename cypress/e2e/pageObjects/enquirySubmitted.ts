@@ -1,8 +1,5 @@
-class EnquirySubmitted {
+export class EnquirySubmitted {
     isEnquirySubmittedSuccessfully() {
-        cy.get('#main-content h2').should('contain', 'Thanks for reaching out');
+        cy.get('.page-body h1').should('contain', 'Input Validation Response');
     }
 }
-
-const enquirySubmitted = new EnquirySubmitted();
-export default enquirySubmitted;
